@@ -2,6 +2,7 @@
 const canvas = document.getElementById("canvas")
 /** @type {CanvasRenderingContext2D} */
 const ctx = canvas.getContext("2d")
+const gridHasLines = true
 
 // Set canvas dimensions to match the window size
 function setCanvastoParentSize() {
@@ -120,6 +121,8 @@ function createGrid(rows, columns, color) {
 function drawGrid(gridArray) {
   gridArray.forEach(gridItem => {
     if (gridItem.isContentReady) gridItem.draw()
+    if (!gridHasLines) return
+
     ctx.beginPath()
     ctx.rect(gridItem.x, gridItem.y, gridItem.width, gridItem.height)
     ctx.strokeStyle = "#FFF"
